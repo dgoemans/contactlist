@@ -1,0 +1,67 @@
+
+.contact-view
+{
+    float: left;
+    height: 100%;
+    padding: 20px;
+}
+
+.contact-view .photo
+{
+    float: left;
+    margin: 8px;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 96px;
+    height: 96px;
+}
+
+.contact-view .row
+{
+    width: 100%;
+    min-width: 400px;
+    min-height: 50px;
+}
+
+.contact-view img
+{
+    height: 96px;
+    width:auto;
+}
+
+.contact-view .label 
+{
+    float: left;
+    min-width: 100px;
+    text-align: right;
+    padding: 10px;
+    color: #777777;
+}
+
+.contact-view .value 
+{
+    float: left;
+    min-width: 100px;
+    text-align: left;
+    padding: 10px;
+    font-size: 1.2em;
+    color: #555555;
+}
+
+.contact-view .line
+{
+    border-bottom: 1px solid #555555;
+    height: 1px;
+}
+
+@media (min-width:800px) 
+{
+}
+
+@media (max-width: 800px)
+{
+    .contact-view
+    {
+        display: none;
+    }
+}

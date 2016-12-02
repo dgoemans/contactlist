@@ -1,0 +1,104 @@
+.contact-list
+{
+    background-color: #f5f5f5;
+    height : 100%;
+    float: left;
+    animation-fill-mode: forwards;
+}
+
+.contact-list ul
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+.contact-list ul li
+{
+    min-height: 80px;
+    padding: 5px;
+    list-style-type: none;
+    border-bottom: 1px solid #eaeaea; 
+}
+
+.contact-list .selected
+{
+    background-color: #fdfdfd;
+    box-shadow: 0 2px 5px #777777;
+}
+
+
+.contact-summary div
+{
+    max-width: 60%;
+    float: left;
+}
+
+.contact-list .add-button
+{
+    border-radius: 50%;
+    background-color: #55ff55;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: 2px 2px 7px #777777;
+    width: 64px;
+    height: 64px;
+}
+
+.contact-summary .photo
+{
+    margin: 8px;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+}
+
+.contact-summary img
+{
+    height: 64px;
+    width:auto;
+}
+
+.contact-summary p
+{
+    font-size: 1.2em;
+}
+
+.contact-summary .arrow
+{
+    margin-top: 30px;
+    margin-right: 5px;
+    width: 16px; 
+    height: 16px; 
+    
+    border-right: 5px solid #777777;
+    border-top: 5px solid #777777;
+    transform: rotate(45deg);
+    content: "";
+
+    display: inline-block;
+    float: right;
+}
+
+@media (min-width:800px) 
+{
+    .contact-list
+    {
+        width: 400px;
+    }
+    
+    .contact-summary .arrow
+    {
+        display: none;
+    }
+}
+
+@media (max-width: 800px)
+{
+    .contact-list
+    {
+        width: 100%;
+        min-width: 320px;
+    }
+}

@@ -1,0 +1,19 @@
+body
+{
+    margin: 0px;
+    padding: 0px;
+    background-color: #fdfdfd;
+}
+
+.container
+{
+    float: left;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+@keyframes exit
+{
+    0% { position: relative; left: 0%; }
+    100% { position: relative; left: -100%; }
+}
