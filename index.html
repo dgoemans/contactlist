@@ -5,6 +5,9 @@
         <link rel="stylesheet" type="text/css" href="css/list.css">
         <link rel="stylesheet" type="text/css" href="css/view.css">
 
+        
+        <script src="js/utils.js"></script>
+        <script src="js/boundObject.js"></script>
         <script src="js/storage.js"></script>
         <script src="js/person.js"></script>
         <script src="js/contactView.js"></script>
@@ -12,13 +15,58 @@
         <script src="js/main.js"></script>
     </head>
     <body>
+        <div class="root">
         <div class="contact-list container" id="contact-list">
+            <input type="text" class="search" id="search"></input>
             <ul>
             </ul>
-            <div class="add-button"></div>
+            <div class="add-button" id="add-button">
+                <div class="plus">+</div>
+                <div>add contact</div>
+            </div>
         </div>
         <div class="contact-view container" id="contact-view">
-            
+            <div class="header">
+                <div class="photo"><img src=""/>
+                    <div>
+                        
+                    </div>
+                </div>
+                <div class="name" contenteditable="true" data-dom="innerHTML" data-js="name"></div>
+            </div>
+            <div class="line"></div>
+            <div class="row">   
+                <div class="label">work</div>
+                <div class="value" contenteditable="true" data-dom="innerHTML" data-js="phoneWork" data-validation="number"></div>
+            </div>
+            <div class="row">   
+                <div class="label">mobile</div>
+                <div class="value" contenteditable="true" data-dom="innerHTML" data-js="phoneMobile" data-validation="number"></div>
+            </div>
+            <div class="line"></div>
+            <div class="row">   
+                <div class="label">work</div>
+                <div class="value" contenteditable="true" data-dom="innerHTML" data-js="emailWork" data-validation="email"></div>
+            </div>
+            <div class="row">   
+                <div class="label">private</div>
+                <div class="value" contenteditable="true" data-dom="innerHTML" data-js="emailPrivate" data-validation="email"></div>
+            </div>
+            <div class="line"></div>
+            <div class="row">   
+                <div class="label">home</div>
+                <div class="value" contenteditable="true" data-dom="innerHTML" data-js="address"></div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="line"></div>
+            <div class="row">   
+                <div class="label">note</div>
+                <div class="value" contenteditable="true" data-dom="innerHTML" data-js="note"></div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="line"></div>
+            <div id="delete">delete</div>
+        </div>
         </div>
     </body>
 </html>

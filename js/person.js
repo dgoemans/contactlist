@@ -1,38 +1,85 @@
-function Person(name, image)
+function Person()
 {
-    this.name = name;
+    this.name = "-";
 
-    this.image = image;
+    this.image = "";
+
+    this.phoneWork = "";
+
+    this.phoneMobile = "";
+
+    this.emailWork = "";
+
+    this.emailPrivate = "";
+
+    this.address = "";
+
+    this.note = "";
+
+    this.listDom = this._createDomListElement();
+
+    this.binding = new BoundObject(this.listDom, this);
 }
 
 Person.prototype = Object.create({});
 
-Person.prototype.getSummaryTemplate = function()
+Person.prototype._createDomListElement = function()
 {
-    return '<div class="photo"><img src="'+this.image+'"/></div><div><p>'+this.name+'</p></div><div class="arrow"></div>';
+    var element = document.createElement("li");
+        
+    element.className = "contact-summary";
+
+    element.innerHTML = '<div class="photo"><img src="'+this.image+'"/></div><div><p data-dom="textContent" data-js="name">'+this.name+'</p></div><div class="arrow"></div>';
+
+    return element;
 }
 
-Person.prototype.getViewTemplate = function()
+Person.prototype.load = function(data)
 {
-    var template = '<div class="row"><div class="photo"><img src="'+this.image+'"/></div><div class="name">'+this.name+'</div></div>';
+    this.name = data.name;
 
-    template += this._line();
-
-    template += this._createViewRow("work", "010 1233456");
-
-    template += this._createViewRow("mobile", "064 123545");
+    this.image = data.image;
     
-    template += this._line();
+    this.phoneWork = data.phoneWork;
 
-    return template;
+    this.phoneMobile = data.phoneMobile;
+
+    this.emailWork = data.emailWork;
+
+    this.emailPrivate = data.emailPrivate;
+
+    this.address = data.address;
+
+    this.note = data.note;
+
+    this.binding.updateDom();
 }
 
-Person.prototype._line = function()
+Person.prototype.getSummaryDom = function()
 {
-    return '<div class="line"></div>';
+    return this.listDom;
 }
 
-Person.prototype._createViewRow = function(key, value)
+Person.prototype.select = function()
 {
-    return '<div class="row"><div class="label">'+key+'</div><div class="name">'+value+'</div></div>';
+    this.listDom.className = "contact-summary selected";
+}
+
+Person.prototype.deselect = function()
+{
+    this.listDom.className = "contact-summary";
+}
+
+Person.prototype.toJSON = function()
+{
+    return { 
+        name: this.name, 
+        image: this.image,
+        phoneWork: this.phoneWork,
+        phoneMobile: this.phoneMobile,
+        emailWork: this.emailWork,
+        emailPrivate: this.emailPrivate,
+        address: this.address,
+        note: this.note
+    };
 }

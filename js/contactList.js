@@ -1,92 +1,91 @@
 
-function ContactList(personSelectedCallback, personSelectedContext)
+function ContactList(people, personSelectedCallback, personSelectedContext)
 {
     this.root = document.getElementById("contact-list").getElementsByTagName("ul")[0];
 
-    this.people = [];
+    this.searchField = document.getElementById("search");
+    this.searchField.onkeyup = this.filterList.bind(this);
 
     this.selected = null;
 
     this.personSelectedCallback = personSelectedCallback;
 
     this.personSelectedContext = personSelectedContext;
+
+    this.people = [];
+
+    people.forEach(function(person){    
+
+        this.addPerson(person, this.selected == null);
+
+    }.bind(this));
 }
 
 ContactList.prototype = Object.create({});
 
-ContactList.prototype.load = function()
+ContactList.prototype.addPerson = function(person, select)
 {
-    var savedContacts = localStorage.getItem("contacts");
+    this.people.push(person);
 
-    if(savedContacts)
+    var element = person.getSummaryDom();
+
+    element.onclick = function() {
+
+        this._select(element, person);
+    
+    }.bind(this);
+
+    this.root.appendChild(element);
+
+    if(select)
     {
-        this.people = this._generateContacts(JSON.parse(savedContacts));
+        this._select(element, person);
     }
-    else
+};
+
+ContactList.prototype.removePerson = function(person)
+{
+    var index = this.people.indexOf(person);
+    if (index != -1)
     {
-        this.people = [];
+        this.people.splice(index, 1);
+        this.root.removeChild(person.getSummaryDom());
     }
+};
+
+ContactList.prototype.filterList = function()
+{
+    var value = this.searchField.value.toUpperCase();;
 
     this.people.forEach(function(person){
+        var name = person.name.toUpperCase();
 
-        var element = document.createElement("li");
-        
-        element.className = "contact-summary";
-
-        element.innerHTML = person.getSummaryTemplate();
-
-        element.onclick = function() {
-
-            this._select(element, person);
-        
-        }.bind(this);
-
-        this.root.appendChild(element);
-
-        if(!this.selected)
+        if(name.indexOf(value) != -1)
         {
-            this._select(element, person);
+            person.getSummaryDom().style.display = "";
         }
-
-    }.bind(this));
+        else
+        {
+            person.getSummaryDom().style.display = "none";
+        }
+    });
 }
 
 ContactList.prototype._select = function(element, person)
 {
     if(this.selected)
     {
-        this.selected.className = "contact-summary";
+        this.selected.deselect();
     }
 
-    this._personSelected(person);
-
-    this.selected = element;
-
-    this.selected.className += " selected";
-}
-
-ContactList.prototype._personSelected = function(person)
-{
-   if (this.personSelectedCallback)
+    if (this.personSelectedCallback)
     {
-        //document.getElementById("contact-list").style.animation = "exit 1s ease-out";
-
         this.personSelectedCallback.call(this.personSelectedContext, person);
     }
-}
 
-ContactList.prototype._generateContacts = function(data)
-{
-    var result = [];
+    this.selected = person;
 
-    data.forEach(function(personData){
-        result.push(new Person(personData.name, personData.image));
-    });
+    this.selected.select();
 
-    return result;
-}
-
-ContactList.prototype.save = function()
-{
-    localStorage.setItem("contacts", JSON.stringify(this.people) );
+    storage.save(this.people);
 }
