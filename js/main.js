@@ -31,8 +31,20 @@
             contactView.showPerson(person);
         }
 
-        function dataChanged()
+        function dataChanged(action, person)
         {
+            switch(action)
+            {
+                case "add":
+                    remote.addPerson(person);
+                    break;
+                case "remove":
+                    remote.removePerson(person);
+                    break;
+                case "edit":
+                    remote.editPerson(person);
+                    break;
+            }
             storage.save(contactList.people);
         }
         
@@ -41,13 +53,13 @@
             
             contactList.addPerson(person, true);
 
-            dataChanged();
+            dataChanged("add", person);
         }
 
         document.getElementById("delete").onclick = function(){
             contactList.removePerson(selectedPerson);
 
-            dataChanged();
+            dataChanged("remove", selectedPerson);
         };
 
         document.getElementById("back").onclick = function(){

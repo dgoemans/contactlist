@@ -2,22 +2,15 @@ function Utils()
 {
 }
 
-Utils.prototype.getAttribute = function(element, attribute) 
+Utils.prototype.generateUuid = function()
 {
-    var result = (element.getAttribute && element.getAttribute(attribute)) || null;
-    if( !result ) 
-    {
-        var attrs = element.attributes;
-        var length = attrs.length;
-        for(var i = 0; i < length; i++)
-        {
-            if(attrs[i].nodeName === attribute)
-            {
-                result = attrs[i].nodeValue;
-            }
-        }
-    }
-    return result;
+    // http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+
+    return uuid;
 }
 
 var utils = new Utils();

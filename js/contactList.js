@@ -29,6 +29,8 @@ ContactList.prototype.addPerson = function(person, select)
 {
     this.people.push(person);
 
+    person.id = utils.generateUuid();
+
     var element = person.getSummaryDom();
 
     element.onclick = function() {

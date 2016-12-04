@@ -1,5 +1,7 @@
 function Person()
 {
+    this.id = 0;
+
     this.name = "-";
 
     this.image = "";
@@ -36,6 +38,8 @@ Person.prototype._createDomListElement = function()
 
 Person.prototype.load = function(data)
 {
+    this.id = data.id;
+
     this.name = data.name;
 
     this.image = data.image;
@@ -73,6 +77,7 @@ Person.prototype.deselect = function()
 Person.prototype.toJSON = function()
 {
     return { 
+        id: this.id,
         name: this.name, 
         image: this.image,
         phoneWork: this.phoneWork,

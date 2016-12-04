@@ -13,6 +13,10 @@ function ContactView(dataChangedCallback, dataChangedContext)
 
     this.boundPerson = null;
 
+    this.dataChangedCallback = dataChangedCallback;
+
+    this.dataChangedContext = dataChangedContext;
+
     this.binding = new BoundObject(this.root, this.selected, this._dataChanged, this);
 }
 
@@ -20,7 +24,7 @@ ContactView.prototype = Object.create({});
 
 ContactView.prototype._dataChanged = function()
 {
-    dataChangedCallback.call(dataChangedContext);
+    this.dataChangedCallback.call(this.dataChangedContext, "edit", this.boundPerson);
 }
 
 ContactView.prototype._choosePhoto = function()
