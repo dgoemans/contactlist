@@ -7,33 +7,40 @@ function ContactView(dataChangedCallback, dataChangedContext)
 
     this.hiddenInput = document.getElementById("choose-image");
 
-    this.photo.onclick = this.choosePhoto.bind(this);
+    this.photo.onclick = this._choosePhoto.bind(this);
 
     this.selected = new Person();
 
     this.boundPerson = null;
 
-    this.binding = new BoundObject(this.root, this.selected, dataChangedCallback, dataChangedContext);
+    this.binding = new BoundObject(this.root, this.selected, this._dataChanged, this);
 }
 
 ContactView.prototype = Object.create({});
 
-ContactView.prototype.choosePhoto = function()
+ContactView.prototype._dataChanged = function()
+{
+    dataChangedCallback.call(dataChangedContext);
+}
+
+ContactView.prototype._choosePhoto = function()
 {
     this.hiddenInput.click();
 
     this.hiddenInput.onchange = function(){
         
-        new FileUpload(this.hiddenInput.files[this.hiddenInput.files.length - 1], this.uploadComplete, this);
+        new FileUpload(this.hiddenInput.files[this.hiddenInput.files.length - 1], this._uploadComplete, this);
         
     }.bind(this);
 };
 
-ContactView.prototype.uploadComplete = function(url)
+ContactView.prototype._uploadComplete = function(url)
 {
     this.selected.image = url;
 
     this.boundPerson.load(this.selected);
+
+    this._dataChanged();
 
     this.binding.updateDom();
 };

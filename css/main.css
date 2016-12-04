@@ -22,6 +22,12 @@ body
     animation-duration: 0.5s;
 }
 
+
+.clearfix
+{
+    clear: both;
+}
+
 input[type=text] 
 {
     margin: 8px 0px;
