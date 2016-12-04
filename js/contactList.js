@@ -1,7 +1,9 @@
 
 function ContactList(people, personSelectedCallback, personSelectedContext)
 {
-    this.root = document.getElementById("contact-list").getElementsByTagName("ul")[0];
+    this.root = document.getElementById("contact-list");
+
+    this.listRoot = this.root.getElementsByTagName("ul")[0];
 
     this.searchField = document.getElementById("search");
     this.searchField.onkeyup = this.filterList.bind(this);
@@ -16,7 +18,7 @@ function ContactList(people, personSelectedCallback, personSelectedContext)
 
     people.forEach(function(person){    
 
-        this.addPerson(person, this.selected == null);
+        this.addPerson(person);
 
     }.bind(this));
 }
@@ -35,7 +37,7 @@ ContactList.prototype.addPerson = function(person, select)
     
     }.bind(this);
 
-    this.root.appendChild(element);
+    this.listRoot.appendChild(element);
 
     if(select)
     {
@@ -49,7 +51,7 @@ ContactList.prototype.removePerson = function(person)
     if (index != -1)
     {
         this.people.splice(index, 1);
-        this.root.removeChild(person.getSummaryDom());
+        this.listRoot.removeChild(person.getSummaryDom());
     }
 };
 
@@ -69,7 +71,7 @@ ContactList.prototype.filterList = function()
             person.getSummaryDom().style.display = "none";
         }
     });
-}
+};
 
 ContactList.prototype._select = function(element, person)
 {
@@ -88,4 +90,14 @@ ContactList.prototype._select = function(element, person)
     this.selected.select();
 
     storage.save(this.people);
-}
+};
+
+ContactList.prototype.enter = function()
+{
+    this.root.style["animation-name"] = "enter-left";
+};
+
+ContactList.prototype.exit = function()
+{
+    this.root.style["animation-name"] = "exit-left";
+};

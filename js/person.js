@@ -29,7 +29,7 @@ Person.prototype._createDomListElement = function()
         
     element.className = "contact-summary";
 
-    element.innerHTML = '<div class="photo"><img src="'+this.image+'"/></div><div><p data-dom="textContent" data-js="name">'+this.name+'</p></div><div class="arrow"></div>';
+    element.innerHTML = '<div class="photo"><img src="'+this.image+'" data-dom="src" data-js="image"/></div><div><p data-dom="textContent" data-js="name">'+this.name+'</p></div><div class="arrow"></div>';
 
     return element;
 }

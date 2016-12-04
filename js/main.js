@@ -8,6 +8,8 @@
 
         var selectedPerson = null;
 
+        var singleColumnDisplay = window.matchMedia("(max-width: 800px)");
+
         storage.load(function(people)
         {
             contactView = new ContactView(dataChanged, this);
@@ -19,6 +21,12 @@
         function personSelected(person)
         {
             selectedPerson = person;
+
+            if(singleColumnDisplay.matches)
+            {
+                contactList.exit();
+                contactView.enter();
+            }
 
             contactView.showPerson(person);
         }
@@ -40,6 +48,11 @@
             contactList.removePerson(selectedPerson);
 
             dataChanged();
+        };
+
+        document.getElementById("back").onclick = function(){
+            contactList.enter();
+            contactView.exit();
         };
         
         
