@@ -1,6 +1,6 @@
 function Remote()
 {
-    this.baseUrl = "http://davidgoemans.com/demo/contactlist/";
+    this.baseUrl = "http://davidgoemans.com/demo/contacts/";
 
 };
 
@@ -45,10 +45,7 @@ Remote.prototype._ajax = function(endpoint, callback, context, data)
         }
     };
     
-    xhr.open("POST", this.baseUrl + endpoint + ".php", true);
-
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    
+    xhr.open("POST", this.baseUrl + endpoint + ".php", true);    
     xhr.send(JSON.stringify(data));
 }
 
