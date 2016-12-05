@@ -100,6 +100,38 @@
     visibility: hidden;
 }
 
+.contact-view .star
+{
+    margin-top: 22px;
+    margin-right: 10px;
+    float: right;
+    font-size: 30px;
+}
+
+.contact-view .star-off:before
+{
+    color: #cccccc;
+    content: "\2606";
+}
+
+.contact-view .star-off:hover
+{
+    color: #cccccc;
+    content: "\2605";
+}
+
+.contact-view .star-on:hover:before
+{
+    color: #ffee88;
+    content: "\2605";
+}
+
+.contact-view .star-on:before
+{
+    color: #ffcc55;
+    content: "\2605";
+}
+
 .back-icon
 {
     margin-top: 15px;

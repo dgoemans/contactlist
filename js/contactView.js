@@ -7,7 +7,11 @@ function ContactView(dataChangedCallback, dataChangedContext)
 
     this.hiddenInput = document.getElementById("choose-image");
 
+    this.star = document.getElementById("favorite");
+
     this.photo.onclick = this._choosePhoto.bind(this);
+
+    this.star.onclick = this._favorite.bind(this);
 
     this.selected = new Person();
 
@@ -40,6 +44,8 @@ ContactView.prototype._choosePhoto = function()
 
 ContactView.prototype._uploadComplete = function(url)
 {
+    console.log("Upload complete");
+    console.log(this);
     this.selected.image = url;
 
     this.boundPerson.load(this.selected);
@@ -49,8 +55,20 @@ ContactView.prototype._uploadComplete = function(url)
     this.binding.updateDom();
 };
 
+ContactView.prototype._favorite = function()
+{
+    this.selected.favorite = !this.selected.favorite;
+
+    this.boundPerson.load(this.selected);
+
+    this.star.className = this.selected.favorite ? "star star-on" : "star star-off";
+
+    this._dataChanged();
+}
+
 ContactView.prototype.showPerson = function(person)
 {
+    console.log("Showing person");
     if (this.boundPerson)
     {
         this.boundPerson.load(this.selected);

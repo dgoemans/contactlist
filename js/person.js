@@ -18,6 +18,8 @@ function Person()
 
     this.note = "";
 
+    this.favorite = false;
+
     this.listDom = this._createDomListElement();
 
     this.binding = new BoundObject(this.listDom, this);
@@ -31,7 +33,11 @@ Person.prototype._createDomListElement = function()
         
     element.className = "contact-summary";
 
-    element.innerHTML = '<div class="photo"><img src="'+this.image+'" data-dom="src" data-js="image"/></div><div><p data-dom="textContent" data-js="name">'+this.name+'</p></div><div class="arrow"></div>';
+    element.innerHTML = '<div class="photo"><img src="'
+        + this.image
+        + '" data-dom="src" data-js="image"/></div><div><p data-dom="textContent" data-js="name">'
+        + this.name
+        + '</p></div><div class="arrow"></div>';
 
     return element;
 }
@@ -55,6 +61,8 @@ Person.prototype.load = function(data)
     this.address = data.address;
 
     this.note = data.note;
+
+    this.favorite = data.favorite;
 
     this.binding.updateDom();
 }
@@ -85,6 +93,7 @@ Person.prototype.toJSON = function()
         emailWork: this.emailWork,
         emailPrivate: this.emailPrivate,
         address: this.address,
-        note: this.note
+        note: this.note,
+        favorite: this.favorite
     };
 }
