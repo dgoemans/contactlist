@@ -78,6 +78,8 @@ ContactView.prototype.showPerson = function(person)
 
     this.selected.load(person);
 
+    this.star.className = this.selected.favorite ? "star star-on" : "star star-off";
+
     this.binding.updateDom();
 };
 

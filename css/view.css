@@ -114,10 +114,10 @@
     content: "\2606";
 }
 
-.contact-view .star-off:hover
+.contact-view .star-off:hover:before
 {
-    color: #cccccc;
-    content: "\2605";
+    color: #ffee88;
+    content: "\2606";
 }
 
 .contact-view .star-on:hover:before
