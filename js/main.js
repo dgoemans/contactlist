@@ -16,6 +16,8 @@
 
             contactList = new ContactList(people, personSelected, this);
 
+            contactList.selectFirst();
+
         }, this);
 
         function personSelected(person)
@@ -39,6 +41,8 @@
         document.getElementById("add-button").onclick = function(){
             var person = new Person();
             
+            person.id = utils.generateUuid();
+
             contactList.addPerson(person, true);
 
             dataChanged("add", person);
@@ -46,6 +50,8 @@
 
         document.getElementById("delete").onclick = function(){
             contactList.removePerson(selectedPerson);
+
+            contactList.selectFirst();
 
             dataChanged("remove", selectedPerson);
         };

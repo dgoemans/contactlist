@@ -1,6 +1,6 @@
 function Storage()
 {
-
+    this.people = [];
 };
 
 Storage.prototype = Object.create({});
@@ -11,6 +11,8 @@ Storage.prototype.load = function(callback, context)
         
         var result = this._gotRemote(remoteData);
 
+        this.people = result;
+
         callback.call(context, result);
     }, this);
     
@@ -18,13 +20,13 @@ Storage.prototype.load = function(callback, context)
 
 Storage.prototype._gotRemote = function(remoteData)
 {
-    var result = [];
+    var merged = [];
 
     remoteData.forEach(function(personData)
     {
         var person = new Person();
         person.load(personData);
-        result.push(person);
+        merged.push(person);
     });
 
     var stored = localStorage.getItem("contacts");
@@ -35,7 +37,7 @@ Storage.prototype._gotRemote = function(remoteData)
 
         people.forEach(function(person){
             
-            var existing = this._find(person, result);
+            var existing = this._find(person, merged);
 
             if(existing)
             {
@@ -43,12 +45,12 @@ Storage.prototype._gotRemote = function(remoteData)
             }
             else
             {
-                result.push(person);
+                merged.push(person);
             }
         }.bind(this));
     }
 
-    return result;
+    return merged;
 };
 
 Storage.prototype._find = function(person, people)
@@ -65,22 +67,50 @@ Storage.prototype._find = function(person, people)
     return found;
 };
 
+Storage.prototype._remove = function(person)
+{
+    remote.removePerson(person);
+
+    var found = this._find(person, this.people);
+    
+    var index = this.people.indexOf(found);
+
+    if(index !== -1)
+    {
+        this.people.splice(index,1);
+    }
+};
+
+Storage.prototype._edit = function(person)
+{
+    remote.editPerson(person);
+
+    var found = this._find(person, this.people);
+
+    if(found)
+    {
+        found.load(person);
+    }
+    else
+    {
+        this.people.push(person);
+    }
+};
+
 Storage.prototype.dataChanged = function(action, person)
 {
     switch(action)
     {
         case "add":
-            remote.addPerson(person);
+        case "edit":
+            this._edit(person);
             break;
         case "remove":
-            remote.removePerson(person);
-            break;
-        case "edit":
-            remote.editPerson(person);
+            this._remove(person);
             break;
     }
 
-    this._localSave(contactList.people);
+    this._localSave(this.people);
 };
 
 Storage.prototype._localSave = function(people)

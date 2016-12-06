@@ -29,8 +29,6 @@ ContactList.prototype.addPerson = function(person, select)
 {
     this.people.push(person);
 
-    person.id = utils.generateUuid();
-
     var element = person.getSummaryDom();
 
     element.onclick = function() {
@@ -55,6 +53,18 @@ ContactList.prototype.removePerson = function(person)
         this.people.splice(index, 1);
         this.listRoot.removeChild(person.getSummaryDom());
     }
+};
+
+ContactList.prototype.selectFirst = function()
+{
+    if(this.people.length === 0)
+    {
+        return;
+    }
+
+    var person = this.people[0];
+    
+    this._select(person.getSummaryDom(), person);
 };
 
 ContactList.prototype.filterList = function()
