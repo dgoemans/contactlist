@@ -8,8 +8,8 @@ Remote.prototype = Object.create({});
 
 Remote.prototype.load = function(callback, context) 
 {   
-    this._ajax("getall", function(){
-
+    this._ajax("getall", function(people){
+        callback.call(context, people);
     }, this);
 };
 

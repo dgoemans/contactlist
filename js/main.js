@@ -33,19 +33,7 @@
 
         function dataChanged(action, person)
         {
-            switch(action)
-            {
-                case "add":
-                    remote.addPerson(person);
-                    break;
-                case "remove":
-                    remote.removePerson(person);
-                    break;
-                case "edit":
-                    remote.editPerson(person);
-                    break;
-            }
-            storage.save(contactList.people);
+            storage.dataChanged(action, person);
         }
         
         document.getElementById("add-button").onclick = function(){

@@ -7,27 +7,88 @@ Storage.prototype = Object.create({});
 
 Storage.prototype.load = function(callback, context) 
 {
+    remote.load(function(remoteData){
+        
+        var result = this._gotRemote(remoteData);
+
+        callback.call(context, result);
+    }, this);
+    
+};
+
+Storage.prototype._gotRemote = function(remoteData)
+{
+    var result = [];
+
+    remoteData.forEach(function(personData)
+    {
+        var person = new Person();
+        person.load(personData);
+        result.push(person);
+    });
+
     var stored = localStorage.getItem("contacts");
 
     if(stored)
     {
-        var people = this._deserialize(stored);
-    }
-    else
-    {
-        people = [];
+        var people = this._localLoad(stored);
+
+        people.forEach(function(person){
+            
+            var existing = this._find(person, result);
+
+            if(existing)
+            {
+                existing.load(person);
+            }
+            else
+            {
+                result.push(person);
+            }
+        }.bind(this));
     }
 
-    callback.call(context, people);
-    
+    return result;
 };
 
-Storage.prototype.save = function(people)
+Storage.prototype._find = function(person, people)
 {
-    this._serialize(people);
+    var found = null;
+
+    people.forEach(function(other){
+       if(person.id === other.id)
+       {
+           found = other;
+       } 
+    });
+
+    return found;
 };
 
-Storage.prototype._deserialize = function(data)
+Storage.prototype.dataChanged = function(action, person)
+{
+    switch(action)
+    {
+        case "add":
+            remote.addPerson(person);
+            break;
+        case "remove":
+            remote.removePerson(person);
+            break;
+        case "edit":
+            remote.editPerson(person);
+            break;
+    }
+
+    this._localSave(contactList.people);
+};
+
+Storage.prototype._localSave = function(people)
+{
+    localStorage.setItem("contacts", JSON.stringify(people) );
+};
+
+Storage.prototype._localLoad = function(data)
 {
     var result = [];
 
@@ -47,11 +108,6 @@ Storage.prototype._deserialize = function(data)
     }
     
     return result;
-}
-
-Storage.prototype._serialize = function(people)
-{
-    localStorage.setItem("contacts", JSON.stringify(people) );
-}
+};
 
 var storage = new Storage();
