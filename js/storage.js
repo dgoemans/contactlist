@@ -39,11 +39,7 @@ Storage.prototype._gotRemote = function(remoteData)
             
             var existing = this._find(person, merged);
 
-            if(existing)
-            {
-                existing.load(person);
-            }
-            else
+            if(!existing)
             {
                 merged.push(person);
             }

@@ -16,7 +16,10 @@
 
             contactList = new ContactList(people, personSelected, this);
 
-            contactList.selectFirst();
+            if(!singleColumnDisplay.matches)
+            {
+                contactList.selectFirst();
+            }
 
         }, this);
 
@@ -51,12 +54,17 @@
         document.getElementById("delete").onclick = function(){
             contactList.removePerson(selectedPerson);
 
-            contactList.selectFirst();
+            if(!singleColumnDisplay.matches)
+            {
+                contactList.selectFirst();
+            }
 
             dataChanged("remove", selectedPerson);
         };
 
         document.getElementById("back").onclick = function(){
+            dataChanged("edit", selectedPerson);
+
             contactList.enter();
             contactView.exit();
         };

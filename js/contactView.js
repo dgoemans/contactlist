@@ -44,8 +44,6 @@ ContactView.prototype._choosePhoto = function()
 
 ContactView.prototype._uploadComplete = function(url)
 {
-    console.log("Upload complete");
-    console.log(this);
     this.selected.image = url;
 
     this.boundPerson.load(this.selected);
@@ -68,7 +66,6 @@ ContactView.prototype._favorite = function()
 
 ContactView.prototype.showPerson = function(person)
 {
-    console.log("Showing person");
     if (this.boundPerson)
     {
         this.boundPerson.load(this.selected);
@@ -77,10 +74,6 @@ ContactView.prototype.showPerson = function(person)
     this.boundPerson = person;
 
     this.selected.load(person);
-
-    console.log("Loading: " + person.id);
-
-    console.log("Selected: " + this.selected.id);
 
     this.star.className = this.selected.favorite ? "star star-on" : "star star-off";
 
