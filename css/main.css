@@ -20,6 +20,7 @@ body
     float: left;
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
+    overflow: hidden;
 }
 
 .splash
