@@ -95,6 +95,11 @@ BoundObject.prototype._dataBinding = function(domElement)
 
 BoundObject.prototype._validate = function(data, type)
 {
+    if(data.length === 0)
+    {
+        return true;
+    }
+
     var regex = "";
     switch(type)
     {

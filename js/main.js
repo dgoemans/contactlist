@@ -57,13 +57,13 @@
         document.getElementById("delete").onclick = function(){
 
             contactList.removePerson(selectedPerson);
+            
+            dataChanged("remove", selectedPerson);
 
             if(!singleColumnDisplay.matches)
             {
                 contactList.selectFirst();
             }
-
-            dataChanged("remove", selectedPerson);
         };
 
         document.getElementById("back").onclick = function()
