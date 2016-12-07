@@ -79,6 +79,12 @@ BoundObject.prototype._dataBinding = function(domElement)
         }
         
         domElement.className = defaultClasses;
+
+        // Hack for Firefox injecting <br> tags into a contentEditable div despite not being allowed to accept enter keys.
+        if(domElement.className.indexOf("single-line") !== -1)
+        {
+             domElement[domAttr] = utils.removeBreaks(domElement[domAttr]);
+        }
         
         this._jsObject[itemAttr] = domElement[domAttr];
 
@@ -104,7 +110,7 @@ BoundObject.prototype._validate = function(data, type)
     switch(type)
     {
         case "number":
-            regex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+            regex = /^[0-9]*$/;
             break;
         case "email":
             // http://emailregex.com/

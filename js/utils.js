@@ -13,6 +13,11 @@ Utils.prototype.generateUuid = function()
     return uuid;
 }
 
+Utils.prototype.removeBreaks = function(html)
+{
+    return html.replace(/(<\/?br\/?>)/,'');
+}
+
 var utils = new Utils();
 
 
