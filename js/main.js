@@ -42,6 +42,7 @@
         }
         
         document.getElementById("add-button").onclick = function(){
+
             var person = new Person();
             
             person.id = utils.generateUuid();
@@ -52,6 +53,7 @@
         }
 
         document.getElementById("delete").onclick = function(){
+
             contactList.removePerson(selectedPerson);
 
             if(!singleColumnDisplay.matches)
@@ -62,10 +64,10 @@
             dataChanged("remove", selectedPerson);
         };
 
-        document.getElementById("back").onclick = function(){
-            dataChanged("edit", selectedPerson);
-
+        document.getElementById("back").onclick = function()
+        {
             contactList.enter();
+
             contactView.exit();
         };
         

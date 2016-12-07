@@ -28,6 +28,11 @@ ContactView.prototype = Object.create({});
 
 ContactView.prototype._dataChanged = function()
 {
+    if(this.boundPerson && this.selected.id === this.boundPerson.id)
+    {
+        this.boundPerson.load(this.selected);
+    }
+
     this.dataChangedCallback.call(this.dataChangedContext, "edit", this.boundPerson);
 }
 

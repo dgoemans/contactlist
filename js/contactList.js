@@ -90,8 +90,6 @@ ContactList.prototype._select = function(element, person)
     if(this.selected)
     {
         this.selected.deselect();
-
-        storage.dataChanged("edit", this.selected);
     }
 
     if (this.personSelectedCallback)
