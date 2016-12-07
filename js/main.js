@@ -10,6 +10,8 @@
 
         var singleColumnDisplay = window.matchMedia("(max-width: 800px)");
 
+        disableNewLines();
+
         storage.load(function(people)
         {
             contactView = new ContactView(dataChanged, this);
@@ -70,8 +72,24 @@
 
             contactView.exit();
         };
-        
-        
     }
+
+    function disableNewLines()
+    {
+        var singleLineElements = document.getElementsByClassName("single-line");
+
+        for(var i=0; i<singleLineElements.length; i++)
+        {
+            var element = singleLineElements[i];
+            element.onkeydown = function(event){
+                if(event.which === 13)
+                {
+                    event.preventDefault();
+                    console.log("caught enter");
+                }
+            };
+        }
+    }
+
 
 })();

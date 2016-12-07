@@ -79,7 +79,7 @@ BoundObject.prototype._dataBinding = function(domElement)
         }
         
         domElement.className = defaultClasses;
-
+        
         this._jsObject[itemAttr] = domElement[domAttr];
 
         if(this.dataChangedCallback)

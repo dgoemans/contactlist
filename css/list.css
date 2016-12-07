@@ -59,20 +59,7 @@
     float: left;
 }
 
-.contact-list .add-button
-{
-    background-color: #666666;
-    width: 100%;
-    height: 64px;
-
-    position: absolute;
-    bottom: 0px;
-
-    color: #ffffff;
-    text-align: center;
-}
-
-.contact-list .add-button .plus
+.contact-list #add-button .plus
 {
     font-size: 32px;
 }

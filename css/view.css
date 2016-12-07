@@ -34,6 +34,7 @@
     padding: 15px;
     flex-grow: 1;
     color: #777777;
+    white-space: nowrap;
 }
 
 .contact-view .row
@@ -74,6 +75,7 @@
     margin-left: 20px;
     color: #777777;
     flex-grow: 1;
+    white-space: pre-wrap;
 }
 
 .contact-view .line
@@ -130,6 +132,17 @@
 {
     color: #ffcc55;
     content: "\2605";
+}
+
+
+.contact-list #footer .phone
+{
+    font-size: 32px;
+}
+
+.contact-list #footer .email
+{
+    font-size: 32px;
 }
 
 .back-icon
