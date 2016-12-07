@@ -2,7 +2,7 @@ function Person()
 {
     this.id = 0;
 
-    this.name = "-";
+    this.name = "Firstname Lastname";
 
     this.image = "http://davidgoemans.com/demo/contacts/images/default.png";
 
