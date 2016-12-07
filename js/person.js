@@ -4,7 +4,7 @@ function Person()
 
     this.name = "-";
 
-    this.image = "";
+    this.image = "http://davidgoemans.com/demo/contacts/images/default.png";
 
     this.phoneWork = "";
 
