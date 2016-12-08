@@ -53,18 +53,25 @@ ContactList.prototype.removePerson = function(person)
         this.people.splice(index, 1);
         this.listRoot.removeChild(person.getSummaryDom());
     }
+
+    return index;
 };
 
-ContactList.prototype.selectFirst = function()
+ContactList.prototype.select = function(index)
 {
-    if(this.people.length === 0)
+    if(this.people.length <= index || index < 0)
     {
         return;
     }
 
-    var person = this.people[0];
+    var person = this.people[index];
     
     this._select(person.getSummaryDom(), person);
+};
+
+ContactList.prototype.selectFirst = function()
+{
+    this.select(0);
 };
 
 ContactList.prototype.filterList = function()

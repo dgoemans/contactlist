@@ -56,13 +56,19 @@
 
         document.getElementById("delete").onclick = function(){
 
-            contactList.removePerson(selectedPerson);
+            var index = contactList.removePerson(selectedPerson);
             
             dataChanged("remove", selectedPerson);
 
             if(!singleColumnDisplay.matches)
             {
-                contactList.selectFirst();
+                contactList.select(index-1);
+            }
+            else
+            {
+                contactList.enter();
+
+                contactView.exit();
             }
         };
 
