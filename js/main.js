@@ -10,6 +10,8 @@
 
         var singleColumnDisplay = window.matchMedia("(max-width: 800px)");
 
+        var wasSingleColumn = singleColumnDisplay.matches; 
+
         disableNewLines();
 
         storage.load(function(people)
@@ -87,15 +89,23 @@
             contactView.exit();
         };
 
-        document.getElementById("call").onclick = function()
+        window.onresize = function()
         {
-            
-        };
+            if(wasSingleColumn && !singleColumnDisplay.matches)
+            {
+                if(selectedPerson === null)
+                {
+                    contactList.selectFirst();
+                }
+                else
+                {
+                    contactView.enter();
+                    contactList.enter();
+                }
+            }
 
-        document.getElementById("mail").onclick = function()
-        {
-            
-        };
+            wasSingleColumn = singleColumnDisplay.matches;
+        }
     }
 
     function disableNewLines()

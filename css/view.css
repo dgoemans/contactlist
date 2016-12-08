@@ -9,6 +9,9 @@
 {
     padding: 10px;
     overflow-y: auto;
+    position: relative;
+    height: 100%;
+    margin-bottom: 64px;
 }
 
 .contact-view .photo
@@ -38,7 +41,6 @@
     padding: 15px;
     flex-grow: 1;
     color: #777777;
-    white-space: nowrap;
 }
 
 .contact-view .row
@@ -179,7 +181,8 @@
         color: #cccccc;
         border-radius: 5px;
         height: 50px;     
-        cursor: pointer;  
+        cursor: pointer;
+        margin: 5px;
     }
 
     .contact-view .back-text
@@ -191,6 +194,7 @@
     .contact-view .name
     {
         font-size: 24px;
+        max-width: 250px;
     }
 
     .contact-view .label

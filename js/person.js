@@ -72,7 +72,15 @@ Person.prototype.load = function(data)
 
     this.note = data.note;
 
-    this.favorite = data.favorite;
+    if(typeof data.favorite === 'string')
+    {
+        this.favorite = parseInt(data.favorite);
+    }
+    else
+    {
+        this.favorite = data.favorite;
+    }
+    
 
     this.binding.updateDom();
 }
