@@ -39,52 +39,54 @@
                     <div class="back-icon"></div>
                     <div class="back-text">back</div>
                 </div>
-                <div class="header">
-                    <div class="photo" id="view-photo"><img src="" data-dom="src" data-js="image" />
-                    <input type="file" id="choose-image" />
+                <div class="contact-details">
+                    <div class="header">
+                        <div class="photo" id="view-photo"><img src="" data-dom="src" data-js="image" />
+                        <input type="file" id="choose-image" />
+                        </div>
+                        <div class="name single-line" contenteditable="true" data-dom="innerHTML" data-js="name"></div>
+                        <div class="star star-off" id="favorite"></div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="name single-line" contenteditable="true" data-dom="innerHTML" data-js="name"></div>
-                    <div class="star star-off" id="favorite"></div>
-                    <div class="clearfix"></div>
+                    <div class="line"></div>
+                    <div class="row">   
+                        <div class="label">work</div>
+                        <div class="value single-line" contenteditable="true" data-dom="innerHTML" data-js="phoneWork" data-validation="number"></div>
+                    </div>
+                    <div class="row">   
+                        <div class="label">mobile</div>
+                        <div class="value single-line" contenteditable="true" data-dom="innerHTML" data-js="phoneMobile" data-validation="number"></div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="row">   
+                        <div class="label">work</div>
+                        <div class="value single-line" contenteditable="true" data-dom="innerHTML" data-js="emailWork" data-validation="email"></div>
+                    </div>
+                    <div class="row">   
+                        <div class="label">private</div>
+                        <div class="value single-line" contenteditable="true" data-dom="innerHTML" data-js="emailPrivate" data-validation="email"></div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="row">   
+                        <div class="label">address</div>
+                        <div class="value" contenteditable="true" data-dom="innerHTML" data-js="address"></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="row">   
+                        <div class="label">note</div>
+                        <div class="value" contenteditable="true" data-dom="innerHTML" data-js="note"></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="line"></div>
                 </div>
-                <div class="line"></div>
-                <div class="row">   
-                    <div class="label">work</div>
-                    <div class="value single-line" contenteditable="true" data-dom="innerHTML" data-js="phoneWork" data-validation="number"></div>
-                </div>
-                <div class="row">   
-                    <div class="label">mobile</div>
-                    <div class="value single-line" contenteditable="true" data-dom="innerHTML" data-js="phoneMobile" data-validation="number"></div>
-                </div>
-                <div class="line"></div>
-                <div class="row">   
-                    <div class="label">work</div>
-                    <div class="value single-line" contenteditable="true" data-dom="innerHTML" data-js="emailWork" data-validation="email"></div>
-                </div>
-                <div class="row">   
-                    <div class="label">private</div>
-                    <div class="value single-line" contenteditable="true" data-dom="innerHTML" data-js="emailPrivate" data-validation="email"></div>
-                </div>
-                <div class="line"></div>
-                <div class="row">   
-                    <div class="label">address</div>
-                    <div class="value" contenteditable="true" data-dom="innerHTML" data-js="address"></div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="line"></div>
-                <div class="row">   
-                    <div class="label">note</div>
-                    <div class="value" contenteditable="true" data-dom="innerHTML" data-js="note"></div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="line"></div>
                 <div class="footer">
                     <a class="footer-button" id="call">
-                        <div class="footer-icon">📞</div>
+                        <div class="footer-icon">✆</div>
                         <div>call contact</div>
                     </a>
                     <a class="footer-button" id="mail">
-                        <div class="footer-icon">-</div>
+                        <div class="footer-icon">✉</div>
                         <div>mail contact</div>
                     </a>
                     <a class="footer-button" id="delete">

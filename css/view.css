@@ -3,8 +3,12 @@
     flex-grow: 1;
     background-color: #fdfdfd;
     box-sizing: border-box;
+}
+
+.contact-details
+{
     padding: 10px;
-    overflow-y: auto !important;
+    overflow-y: auto;
 }
 
 .contact-view .photo

@@ -68,25 +68,33 @@ input[type=text]
 {
     background-color: #666666;
     width: 100%;
-    height: 64px;
 
     position: absolute;
     bottom: 0px;
 
     color: #ffffff;
     text-align: center;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.center
+{
+    margin: auto;
+    display: block;
+    float: initial;
 }
 
 .footer-button
 {
     background-color: #666666;
     min-width: 140px;
-    margin: auto;
-    float: left;
     cursor: pointer;
     display: block;
     text-decoration: none;
     color: #ffffff;
+    height: 64px;
 }
 
 .footer-button:hover
