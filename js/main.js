@@ -29,6 +29,8 @@
         {
             selectedPerson = person;
 
+            setupButtons(selectedPerson);
+
             if(singleColumnDisplay.matches)
             {
                 contactList.exit();
@@ -36,6 +38,12 @@
             }
 
             contactView.showPerson(person);
+        }
+
+        function setupButtons(person)
+        {
+            document.getElementById("call").href = "tel:" + person.getPhoneNumber();
+            document.getElementById("mail").href = "mailto:" + person.getEmailAddress();
         }
 
         function dataChanged(action, person)
@@ -77,6 +85,16 @@
             contactList.enter();
 
             contactView.exit();
+        };
+
+        document.getElementById("call").onclick = function()
+        {
+            
+        };
+
+        document.getElementById("mail").onclick = function()
+        {
+            
         };
     }
 

@@ -89,14 +89,6 @@
     border: 1px solid #ff7777;
 }
 
-.contact-view #delete
-{
-    padding: 15px;
-    color: #ff7777;
-    float: right;
-    cursor: pointer;
-}
-
 .contact-view #choose-image
 {
     visibility: hidden;

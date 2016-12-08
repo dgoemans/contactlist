@@ -27,6 +27,16 @@ function Person()
 
 Person.prototype = Object.create({});
 
+Person.prototype.getPhoneNumber = function()
+{
+    return this.phoneWork ? this.phoneWork : this.phoneMobile;
+}
+
+Person.prototype.getEmailAddress = function()
+{
+    return this.emailWork ? this.emailWork : this.emailPrivate;
+}
+
 Person.prototype._createDomListElement = function()
 {
     var element = document.createElement("li");

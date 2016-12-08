@@ -21,6 +21,7 @@ body
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
     overflow: hidden;
+    height: 100%;
 }
 
 .splash
@@ -74,6 +75,28 @@ input[type=text]
 
     color: #ffffff;
     text-align: center;
+}
+
+.footer-button
+{
+    background-color: #666666;
+    min-width: 140px;
+    margin: auto;
+    float: left;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer-button:hover
+{
+    background-color: #888888;
+}
+
+.footer-icon
+{
+    font-size: 32px;
 }
 
 @media (max-width:800px) 
