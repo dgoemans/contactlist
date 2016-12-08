@@ -1,5 +1,9 @@
 function Storage()
 {
+    // TODO: enable this for experimental merging of local storage and remote.
+    // I disabled this because it wasn't working on the edge case where someone else deleted
+    // some contacts you had locally. 
+    this.mergeLocalStorage = false; 
     this.people = [];
 };
 
@@ -29,21 +33,24 @@ Storage.prototype._gotRemote = function(remoteData)
         merged.push(person);
     });
 
-    var stored = localStorage.getItem("contacts");
-
-    if(stored)
+    if(this.mergeLocalStorage)
     {
-        var people = this._localLoad(stored);
+        var stored = localStorage.getItem("contacts");
 
-        people.forEach(function(person){
-            
-            var existing = this._find(person, merged);
+        if(stored)
+        {
+            var people = this._localLoad(stored);
 
-            if(!existing)
-            {
-                merged.push(person);
-            }
-        }.bind(this));
+            people.forEach(function(person){
+                
+                var existing = this._find(person, merged);
+
+                if(!existing)
+                {
+                    merged.push(person);
+                }
+            }.bind(this));
+        }
     }
 
     return merged;
