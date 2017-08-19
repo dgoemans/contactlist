@@ -1,7 +1,7 @@
 { 
    "name": "TransIpContacts", 
    "version": "1.0.0", 
-   "description": "Address book application for transip.", 
+   "description": "Address book application for a certain job application.", 
    "scripts": { 
      "lite": "lite-server –port 10001", 
      "start": "npm run lite" 
